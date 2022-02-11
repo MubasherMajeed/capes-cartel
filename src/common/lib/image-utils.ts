@@ -6,7 +6,7 @@ import { ApiTags } from "@nestjs/swagger";
 
 @ApiTags("Image")
 export class ImageUtils {
-  static imagePath = path.join(process.cwd(), "..", "uploads");
+  static imagePath = path.join(process.cwd(), "uploads");
 
   static async toWebp(
     imagePath: string,

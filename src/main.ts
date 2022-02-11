@@ -9,7 +9,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors();
-  app.useStaticAssets(join(process.cwd(), "..", "uploads"), {
+  app.useStaticAssets(join(process.cwd(), "uploads"), {
     prefix: "/uploads/"
   });
 
