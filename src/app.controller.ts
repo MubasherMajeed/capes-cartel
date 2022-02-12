@@ -14,7 +14,7 @@ import { Http500 } from "./common/lib/Http500";
 import { FileDto, SaveFileDTO, SaveMultipleFileDTO, SaveVideoFileDTO } from "./data/dtos/file.dto";
 
 
-@ApiTags("Main")
+@ApiTags("Files")
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {

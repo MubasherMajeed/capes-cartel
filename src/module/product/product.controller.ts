@@ -26,11 +26,11 @@ export class ProductController {
   }
 
 
-  @ApiOkResponse({ type: [ProductResponseDto], description: "Search By Products name" })
+  @ApiOkResponse({ type: [ProductResponseDto], description: "Search By Products name and description" })
   @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })
-  @Get("/search/:name")
-  async search(@Param("name")name:string){
-    return this.service.search(name);
+  @Get("/search/:query")
+  async search(@Param("query")query:string){
+    return this.service.search(query);
   }
 
 

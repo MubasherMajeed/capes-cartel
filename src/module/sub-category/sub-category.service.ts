@@ -22,6 +22,16 @@ export class SubCategoryService {
       .populate("main_category")
       .exec();
   }
+
+
+  async search(name: string) {
+    return this.model.find({ name: { $regex: name} })
+      .populate("master_category")
+      .populate("main_category")
+      .exec();
+  }
+
+
   async fetchByMainCategoryId(id: string) {
 
     return this.model.find({ main_category: id })

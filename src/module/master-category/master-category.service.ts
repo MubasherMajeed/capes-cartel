@@ -16,6 +16,11 @@ export class MasterCategoryService {
     return this.model.findOne({ _id: id }).exec();
   }
 
+  async search(name: string) {
+
+    return this.model.find({ name: { $regex: name }}).exec();
+  }
+
   async create(data: any) {
     return this.model.create(data);
   }

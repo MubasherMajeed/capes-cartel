@@ -24,6 +24,13 @@ export class AttributeController {
     return this.service.fetch();
   }
 
+  @ApiOkResponse({ type: [AttributeResponseDto], description: "Search By name and values of Attribute" })
+  @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })
+  @Get("/search/:query")
+  async search(@Param("query")query:string){
+    return this.service.search(query);
+  }
+
 
   @ApiOkResponse({ type: AttributeResponseDto, description: "Attribute with id " })
   @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })

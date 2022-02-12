@@ -29,6 +29,14 @@ export class MainCategoryController {
     return this.service.fetch();
   }
 
+  @ApiOkResponse({ type: [MainCategoryResponseDto], description: "Search Main Category by name" })
+  @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })
+  @Get("/:name")
+  async search(@Param("name") name:string){
+    return this.service.search(name);
+  }
+
+
 
   @ApiOkResponse({ type: MainCategoryResponseDto, description: "Main Category with id " })
   @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })

@@ -30,6 +30,14 @@ export class SubCategoryController {
   }
 
 
+  @ApiOkResponse({ type: [SubCategoryResponseDto], description: "Search Sub Category by name" })
+  @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })
+  @Get("/:name")
+  async search(@Param("name") name:string){
+    return this.service.search(name);
+  }
+
+
   @ApiOkResponse({ type: SubCategoryResponseDto, description: "Sub Category with id " })
   @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })
   @Get("/:id")

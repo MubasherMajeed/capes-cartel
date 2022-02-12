@@ -1,5 +1,4 @@
 import { Prop } from "@nestjs/mongoose";
-import { FileSchema } from "../schemas/file.schema";
 import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { MasterCategoryResponseDto } from "./master.category.dto";
 import { LocalMainCategoryResponses } from "./main.category.dto";
@@ -7,6 +6,34 @@ import {  SubCategoryResponseForProductDto } from "./sub.category.dto";
 import { AttributeResponseDto } from "./attribute.dto";
 import { FileDto } from "./file.dto";
 import { IS_MONGO_ID, IsBoolean, IsMongoId, IsNumber, IsString } from "class-validator";
+import mongoose from "mongoose";
+import { Attribute } from "../schemas/attribute.schema";
+
+
+
+export class SelectedStockAttributes {
+  @ApiProperty()
+  name: string;
+
+  @ApiProperty()
+  value:string;
+}
+
+export class VariantStock {
+  @ApiProperty()
+  stock:number
+
+  @ApiProperty()
+  min_stock:number
+
+  @ApiProperty({type:[FileDto]})
+  images: [FileDto];
+
+  @ApiProperty({type:[SelectedStockAttributes]})
+  selected_stock_attributes:[SelectedStockAttributes];
+
+}
+
 
 export class SelectedValues {
   @IsString()
@@ -81,8 +108,8 @@ export class ProductRequestDto {
   @ApiProperty()
   admin_commission:number;
 
-  @ApiProperty({type:FileDto})
-  image:FileDto;
+  @ApiProperty({type:[FileDto]})
+  image:[FileDto];
 
   @ApiProperty({type:FileDto})
   video:FileDto;
@@ -111,6 +138,9 @@ export class ProductRequestDto {
   @ApiProperty({type:[VariantDto]})
   variant : [VariantDto];
 
+  @ApiProperty({type:[VariantStock]})
+  variant_stock:[VariantStock]
+
 }
 
 
@@ -126,16 +156,6 @@ export class SelectedValuesResponse {
 
   @ApiProperty()
   price:number;
-
-  @ApiProperty()
-  stock:number;
-
-  @ApiProperty()
-  min_stock:number;
-
-  @ApiProperty({type:[FileDto]})
-  images: [FileSchema];
-
 }
 
 export class VariantDtoResponse {
@@ -145,6 +165,7 @@ export class VariantDtoResponse {
   @ApiProperty({type:[SelectedValuesResponse]})
   selected_values: [SelectedValuesResponse];
 }
+
 
 
 export class ProductResponseDto{
@@ -181,8 +202,8 @@ export class ProductResponseDto{
   @ApiProperty()
   admin_commission:number;
 
-  @ApiProperty()
-  image:FileDto;
+  @ApiProperty({type:[FileDto]})
+  image:[FileDto];
 
   @ApiProperty()
   video:FileDto;
@@ -205,5 +226,18 @@ export class ProductResponseDto{
 
   @ApiProperty({type:[VariantDtoResponse]})
   variant : [VariantDtoResponse];
+
+  @ApiProperty({type:[VariantStock]})
+  variant_stock:[VariantStock]
 }
 
+
+//
+// @ApiProperty()
+// stock:number;
+//
+// @ApiProperty()
+// min_stock:number;
+//
+// @ApiProperty({type:[FileDto]})
+// images: [FileSchema];

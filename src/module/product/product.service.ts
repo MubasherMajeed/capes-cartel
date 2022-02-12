@@ -41,8 +41,7 @@ export class ProductService {
   }
 
   async search(name: string) {
-//todo
-    return this.model.find({ name: { $expr : name  } })
+    return this.model.find({ $or: [{ name: { $regex: name } },{ description: { $regex: name } }] })
       .populate("master_category")
       .populate("main_category")
       .populate("sub_category")

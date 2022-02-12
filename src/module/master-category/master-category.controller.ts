@@ -32,6 +32,16 @@ export class MasterCategoryController {
   }
 
 
+  @ApiOkResponse({ type: [MasterCategoryResponseDto], description: "Search by name of Master Category" })
+  @ApiInternalServerErrorResponse({ description: "Unexpected Errors" })
+  @Get("/search/:name")
+  async Search(@Param("name") name :string){
+    return this.service.search(name);
+  }
+
+
+
+
 
   @ApiCreatedResponse({ type: MasterCategoryResponseDto, description: "Master Category Created Successfully" })
   @ApiInternalServerErrorResponse({ description: "Unexpected Error" })

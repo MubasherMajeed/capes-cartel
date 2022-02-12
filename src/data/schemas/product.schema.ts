@@ -16,7 +16,7 @@ export class Variant {
   attribute: string;
 
   @Prop()
-  selected_values:[ SelectedValues];
+  selected_values: [SelectedValues];
 
 }
 
@@ -25,20 +25,10 @@ export class Variant {
 export class SelectedValues {
 
   @Prop()
-  name:string
+  name: string;
 
   @Prop()
-  price:number;
-
-  @Prop()
-  stock:number
-
-  @Prop()
-  min_stock:number
-
-  @Prop()
-  images: [FileSchema];
-
+  price: number;
 
 }
 
@@ -76,7 +66,7 @@ export class Product {
   admin_commission: number;
 
   @Prop()
-  image: FileSchema;
+  image: [FileSchema];
 
   @Prop()
   video: FileSchema;
@@ -100,6 +90,35 @@ export class Product {
   @Prop()
   variant: [Variant];
 
+  @Prop()
+  variant_stock: [VariantStock];
+
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
+
+
+@Schema({ timestamps: false })
+export class VariantStock {
+  @Prop()
+  stock: number;
+
+  @Prop()
+  min_stock: number;
+
+  @Prop()
+  images: [FileSchema];
+
+  @Prop()
+  selected_stock_attributes: [SelectedStockAttributes];
+
+}
+
+@Schema({ timestamps: false })
+export class SelectedStockAttributes {
+  @Prop()
+  name: string;
+
+  @Prop()
+  value: string;
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { MainCategories, MainCategoryDocument } from "../../data/schemas/main.catergory.schema";
@@ -19,6 +19,12 @@ export class MainCategoryService {
       .populate("master_category")
       .exec();
   }
+
+  async search(name: string) {
+    return this.model.find({ name: { $regex:  name } }).populate("master_category")
+      .exec();
+  }
+
   async fetchByMasterCategoryId(id: string) {
 
     return this.model.find({ master_category: id })

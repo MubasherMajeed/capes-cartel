@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Attribute, AttributeDocument } from "../../data/schemas/attribute.schema";
@@ -14,6 +14,11 @@ export class AttributeService {
       return this.model.find().exec();
     }
     return this.model.findOne({ _id: id }).exec();
+  }
+
+  async search(name: string) {
+
+    return this.model.find({ $or: [{ name: { $regex: name } },{ values: { $regex: name } }] }).exec();
   }
 
   async create(data: any) {
