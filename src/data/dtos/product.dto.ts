@@ -35,35 +35,35 @@ export class VariantStock {
 }
 
 
-export class SelectedValues {
-  @IsString()
-  @ApiProperty()
-  name:string;
-
-  @IsNumber()
-  @ApiProperty()
-  price:number;
-
-  @IsNumber()
-  @ApiProperty()
-  stock:number;
-
-  @IsNumber()
-  @ApiProperty()
-  min_stock:number;
-
-  @ApiProperty({type:[FileDto]})
-  images: [FileDto];
-
-}
+// export class SelectedValues {
+//   @IsString()
+//   @ApiProperty()
+//   name:string;
+//
+//   @IsNumber()
+//   @ApiProperty()
+//   price:number;
+//
+//   @IsNumber()
+//   @ApiProperty()
+//   stock:number;
+//
+//   @IsNumber()
+//   @ApiProperty()
+//   min_stock:number;
+//
+//   @ApiProperty({type:[FileDto]})
+//   images: [FileDto];
+//
+// }
 
 export class VariantDto {
   @IsMongoId()
   @ApiProperty()
   attribute: string;
 
-  @ApiProperty({type:[SelectedValues]})
-  selected_values: [SelectedValues];
+  @ApiProperty({type:[String]})
+  selected_values: [string];
 }
 
 
@@ -149,21 +149,21 @@ export class ProductUpdateRequestDto extends PartialType(ProductRequestDto){
 }
 
 
-
-export class SelectedValuesResponse {
-  @ApiProperty()
-  name:string;
-
-  @ApiProperty()
-  price:number;
-}
+//
+// export class SelectedValuesResponse {
+//   @ApiProperty()
+//   name:string;
+//
+//   @ApiProperty()
+//   price:number;
+// }
 
 export class VariantDtoResponse {
   @ApiProperty({type:AttributeResponseDto})
   attribute: AttributeResponseDto;
 
-  @ApiProperty({type:[SelectedValuesResponse]})
-  selected_values: [SelectedValuesResponse];
+  @ApiProperty({type:[String]})
+  selected_values: [string];
 }
 
 

@@ -16,21 +16,21 @@ export class Variant {
   attribute: string;
 
   @Prop()
-  selected_values: [SelectedValues];
+  selected_values: [string];
 
 }
 
-
-@Schema({ timestamps: false })
-export class SelectedValues {
-
-  @Prop()
-  name: string;
-
-  @Prop()
-  price: number;
-
-}
+//
+// @Schema({ timestamps: false })
+// export class SelectedValues {
+//
+//   @Prop()
+//   name: string;
+//
+//   @Prop()
+//   price: number;
+//
+// }
 
 
 @Schema({ timestamps: true })
