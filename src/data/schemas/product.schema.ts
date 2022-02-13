@@ -12,7 +12,7 @@ export type ProductDocument = Product & Document;
 
 @Schema({ timestamps: false })
 export class Variant {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Attribute.name })
+  @Prop()
   attribute: string;
 
   @Prop()

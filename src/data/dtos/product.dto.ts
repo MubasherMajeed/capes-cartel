@@ -58,7 +58,7 @@ export class VariantStock {
 // }
 
 export class VariantDto {
-  @IsMongoId()
+  @IsString()
   @ApiProperty()
   attribute: string;
 
@@ -159,8 +159,8 @@ export class ProductUpdateRequestDto extends PartialType(ProductRequestDto){
 // }
 
 export class VariantDtoResponse {
-  @ApiProperty({type:AttributeResponseDto})
-  attribute: AttributeResponseDto;
+  @ApiProperty({type:String})
+  attribute: string;
 
   @ApiProperty({type:[String]})
   selected_values: [string];
