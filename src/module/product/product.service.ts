@@ -14,29 +14,12 @@ export class ProductService {
     if (id == null) {
       return this.model.find().populate("master_category")
         .populate("main_category").populate("sub_category")
-        .populate({
-          path: "variant",
-          populate: [
-            {
-              path: "attribute",
-              model: Attribute.name
-            }
-          ]
-        }).exec();
+        .exec();
     }
     return this.model.findOne({ _id: id })
       .populate("master_category")
       .populate("main_category")
       .populate("sub_category")
-      .populate({
-        path: "variant",
-        populate: [
-          {
-            path: "attribute",
-            model: Attribute.name
-          }
-        ]
-      })
       .exec();
   }
 
@@ -44,16 +27,7 @@ export class ProductService {
     return this.model.find({ $or: [{ name: { $regex: name } },{ description: { $regex: name } }] })
       .populate("master_category")
       .populate("main_category")
-      .populate("sub_category")
-      .populate({
-        path: "variant",
-        populate: [
-          {
-            path: "attribute",
-            model: Attribute.name
-          }
-        ]
-      }).exec();
+      .populate("sub_category").exec();
 
   }
 
@@ -67,15 +41,6 @@ export class ProductService {
       .populate("master_category")
       .populate("main_category")
       .populate("sub_category")
-      .populate({
-        path: "variant",
-        populate: [
-          {
-            path: "attribute",
-            model: Attribute.name
-          }
-        ]
-      })
       .exec();
   }
 
